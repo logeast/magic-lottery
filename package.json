@@ -1,8 +1,10 @@
 {
   "name": "magic-lottery",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "license": "MIT",
+  "author": "logeast",
+  "description": "A magic tool makes your lucky draws simpler.",
   "files": [
     "dist"
   ],
