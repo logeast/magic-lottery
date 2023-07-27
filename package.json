@@ -3,6 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/magic-lottery.umd.cjs",
+  "module": "./dist/magic-lottery.js",
+  "exports": {
+    ".": {
+      "import": "./dist/magic-lottery.jd",
+      "require": "./dist/magic-lottery.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
