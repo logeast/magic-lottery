@@ -1,103 +1,90 @@
 # MagicLottery
 
-Magic Lottery is a magic tooling library that makes your lucky draws simpler, funnier and faier.
+Magic Lottery is an intuitive library aimed at simplifying your lottery experiences to make them simpler, more enjoyable, and fair.
 
 <p align="center">
   <a href="https://npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery.svg" alt="npm package"></a>
   <a href="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml"><img src="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
-  <a href="https://www.npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery?color=729B1B&label="></a>
 </p>
-<br/>
 
-## Install
+## Installation
 
-You can install MagicLottery using npm/yarn/pnpm. Run the following command in your terminal:
+To install MagicLottery, use npm/yarn/pnpm. Execute the following command in your terminal:
 
 ```bash
 npm install magic-lottery
-#or
+# or
 yarn add magic-lottery
 # or
 pnpm add magic-lottery
 ```
 
-## Use Case
+## Usage Example
 
-Here is a use case of the MagicLottery API:
+Here's a demonstration of how to use the MagicLottery API:
 
 ```javascript
 import MagicLottery from "magic-lottery";
 
-// Create a new MagicLottery instance with an array of numbers as entries
+// Instantiate MagicLottery with an array of numbers as entries
 let lottery = new MagicLottery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-// Get the current entries
-console.log(lottery.getEntries()); // Outputs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// Fetch the current entries
+console.log(lottery.getEntries()); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// Set new entries
+// Replace entries
 lottery.setEntries([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
-console.log(lottery.getEntries()); // Outputs: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+console.log(lottery.getEntries()); // [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
-// Shuffle the entries using the current shuffle algorithm
+// Shuffle using the existing shuffle algorithm
 let shuffledEntries = lottery.getShuffleAlgorithm()(lottery.getEntries());
-console.log(shuffledEntries); // Outputs: A shuffled array of the entries
+console.log(shuffledEntries); 
 
-// Set a new shuffle algorithm
+// Implement a new shuffle algorithm
 lottery.setShuffleAlgorithm((input) => input.sort(() => Math.random() - 0.5));
 
-// Shuffle the entries using the new shuffle algorithm
+// Shuffle using the new shuffle algorithm
 shuffledEntries = lottery.getShuffleAlgorithm()(lottery.getEntries());
-console.log(shuffledEntries); // Outputs: A shuffled array of the entries using the new shuffle algorithm
+console.log(shuffledEntries);
 ```
 
-This use case demonstrates how to create a new MagicLottery instance, get and set entries, get and set the shuffle algorithm, and shuffle the entries using the current shuffle algorithm. 
+This example shows you how to create a new MagicLottery instance, fetch and replace entries, get and set a shuffle algorithm, and shuffle entries utilizing the currently specified shuffle algorithm.
 
 ## API Documentation
 
-Class: MagicLottery<T>
+MagicLottery<T> is a generic class that operates as a customizable lottery system.
 
-A generic class that represents a lottery system with customizable shuffle algorithm.
+### Constructor: MagicLottery(entries: T[], shuffleAlgorithm?: (input: T[]) => T[])
 
-Constructor: MagicLottery(entries: T], shuffleAlgorithm?: (input: T[]) => T[])
+Generates a new MagicLottery instance taking an array of unique entries and an optional custom shuffle algorithm.
 
-Creates a new instance of MagicLottery.
+### Method: setEntries(entries: T[]): void 
 
-- entries - An array of entries of type T.
-- shuffleAlgorithm - An optional custom shuffle algorithm. If not provided, a default Fisher-Yates shuffle algorithm is used.
-
-### Method: setEntries(entries: T[]): void
-
-Sets the entries of the lottery.
-
-- entries - An array of entries of type T.
+Resets the entries within the lottery.
 
 ### Method: getEntries(): T[]
 
-Returns a copy of the current entries of the lottery.
+Returns a copy of the current entries list.
 
 ### Method: setShuffleAlgorithm(shuffleAlgorithm: (input: T[]) => T[]): void
 
-Sets the shuffle algorithm of the lottery.
-
-- shuffleAlgorithm - A function that takes an array of type T and returns a shuffled array of type T.
+Allocates a new shuffling algorithm for the lottery.
 
 ### Method: getShuffleAlgorithm(): (input: T[]) => T[]
 
-Returns the current shuffle algorithm of the lottery.
+Fetches the shuffle algorithm currently utilized by the lottery.
 
 ### Method: defaultShuffle(input: T[]): T[]
 
-A private method that implements the Fisher-Yates shuffle algorithm. This is used as the default shuffle algorithm if no custom algorithm is provided.
-
-- input - An array of type T to be shuffled.
+Private method implementing the Fisher-Yates shuffle algorithm, this is used by default if no custom algorithm is provided.
 
 ## Export
 
-The MagicLottery class is the default export of this module.
+The MagicLottery class is exported by default from this module.
 
-## Contribution
+## Contributing
 
-See [Contributing Guide](CONTRIBUTING.md).
+Refer to our [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
