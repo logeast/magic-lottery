@@ -25,7 +25,7 @@ class MagicLottery<T> {
 
   // Fisher-Yates Shuffle Algorathm implemented as the default shuffling method.
   private defaultShuffle(input: T[]): T[] {
-    let array = [...input];
+    const array = [...input];
     let currentIndex = array.length;
     let temporaryValue: T;
     let randomIndex: number;

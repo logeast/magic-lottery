@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-and-cache
+
+      - name: Install
+        run: pnpm i
+
+      - name: Lint
+        run: pnpm run lint
+
+  test:
+    runs-on: ${{ matrix.os }}
+
+    timeout-minutes: 3
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [16, 18]
+        include:
+          - os: macos-latest
+            node_version: 18
+          - os: windows-latest
+            node_version: 18
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-and-cache
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Install
+        run: pnpm i
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Test
+        run: pnpm run test
