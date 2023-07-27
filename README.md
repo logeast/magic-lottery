@@ -1,9 +1,11 @@
 # MagicLottery
 
+Magic Lottery is a magic tooling library that makes your lucky draws simpler, funnier and faier.
+
 <p align="center">
   <a href="https://npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery.svg" alt="npm package"></a>
   <a href="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml"><img src="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
-  <a href="https://www.npmjs.com/package/vitest"><img src="https://img.shields.io/npm/v/magic-lottery?color=729B1B&label="></a>
+  <a href="https://www.npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery?color=729B1B&label="></a>
 </p>
 <br/>
 
@@ -19,83 +21,79 @@ yarn add magic-lottery
 pnpm add magic-lottery
 ```
 
-## Samples
+## Use Case
 
-Here are some sample usages of the MagicLottery API:
+Here is a use case of the MagicLottery API:
 
 ```javascript
 import MagicLottery from "magic-lottery";
 
-// Generate a set of lottery numbers
-let numbers = MagicLottery.generateNumbers();
-console.log(numbers); // Outputs: 12, 7, 26, 44, 30, 19]
+// Create a new MagicLottery instance with an array of numbers as entries
+let lottery = new MagicLottery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-// Buy a lottery ticket with the generated numbers
-let ticket = MagicLottery.buyTicket(numbers);
-console.log(ticket); // Outputs: { numbers: [12, 7, 26, 44, 30, 19] }
+// Get the current entries
+console.log(lottery.getEntries()); // Outputs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// Check if the ticket numbers are the winning numbers
-let winningNumbers = [12, 7, 26, 44, 30, 19];
-let isWinningTicket = MagicLottery.checkWinningNumbers(
-  winningNumbers,
-  ticket.numbers
-);
-console.log(isWinningTicket); // Outputs: true
+// Set new entries
+lottery.setEntries([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+console.log(lottery.getEntries()); // Outputs: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+// Shuffle the entries using the current shuffle algorithm
+let shuffledEntries = lottery.getShuffleAlgorithm()(lottery.getEntries());
+console.log(shuffledEntries); // Outputs: A shuffled array of the entries
+
+// Set a new shuffle algorithm
+lottery.setShuffleAlgorithm((input) => input.sort(() => Math.random() - 0.5));
+
+// Shuffle the entries using the new shuffle algorithm
+shuffledEntries = lottery.getShuffleAlgorithm()(lottery.getEntries());
+console.log(shuffledEntries); // Outputs: A shuffled array of the entries using the new shuffle algorithm
 ```
 
-## API
+This use case demonstrates how to create a new MagicLottery instance, get and set entries, get and set the shuffle algorithm, and shuffle the entries using the current shuffle algorithm. 
 
-### `generateNumbers()`
+## API Documentation
 
-Generates a set of unique random numbers for the lottery.
+Class: MagicLottery<T>
 
-**Returns**
+A generic class that represents a lottery system with customizable shuffle algorithm.
 
-Type: `Array<number>`
+Constructor: MagicLottery(entries: T], shuffleAlgorithm?: (input: T[]) => T[])
 
-An array of unique random numbers.
+Creates a new instance of MagicLottery.
 
-### `checkWinningNumbers(winningNumbers: Array<number>, ticketNumbers: Array<number>)`
+- entries - An array of entries of type T.
+- shuffleAlgorithm - An optional custom shuffle algorithm. If not provided, a default Fisher-Yates shuffle algorithm is used.
 
-Checks if the ticket numbers match the winning numbers.
+### Method: setEntries(entries: T[]): void
 
-**Parameters**
+Sets the entries of the lottery.
 
-Name: `winningNumbers`
+- entries - An array of entries of type T.
 
-Type: `Array<number>`
+### Method: getEntries(): T[]
 
-Description: The winning numbers of the lottery.
+Returns a copy of the current entries of the lottery.
 
-Name: `ticketNumbers`
+### Method: setShuffleAlgorithm(shuffleAlgorithm: (input: T[]) => T[]): void
 
-Type: `Array<number>`
+Sets the shuffle algorithm of the lottery.
 
-Description: The numbers on the lottery ticket.
+- shuffleAlgorithm - A function that takes an array of type T and returns a shuffled array of type T.
 
-**Returns**
+### Method: getShuffleAlgorithm(): (input: T[]) => T[]
 
-Type: `boolean`
+Returns the current shuffle algorithm of the lottery.
 
-True if the ticket numbers match the winning numbers, false otherwise.
+### Method: defaultShuffle(input: T[]): T[]
 
-### `buyTicket(numbers: Array<number>)`
+A private method that implements the Fisher-Yates shuffle algorithm. This is used as the default shuffle algorithm if no custom algorithm is provided.
 
-Buys a lottery ticket with the specified numbers.
+- input - An array of type T to be shuffled.
 
-**Parameters**
+## Export
 
-Name: `numbers`
-
-Type: `Array<number>`
-
-Description: The numbers to be on the lottery ticket.
-
-**Returns**
-
-Type: `Ticket`
-
-The purchased lottery ticket.
+The MagicLottery class is the default export of this module.
 
 ## Contribution
 
