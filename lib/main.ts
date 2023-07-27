@@ -34,13 +34,13 @@ class MagicLottery<T> {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
 
-      // swap input[currentIndex] with input[randomIndex]
-      temporaryValue = input[currentIndex];
-      input[currentIndex] = input[randomIndex];
-      input[randomIndex] = temporaryValue;
+      // swap array[currentIndex] with array[randomIndex]
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
 
-    return input;
+    return array;
   }
 }
 
