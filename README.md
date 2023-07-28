@@ -5,6 +5,7 @@ Magic Lottery is an intuitive library aimed at simplifying your lottery experien
 <p align="center">
   <a href="https://npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery.svg" alt="npm package"></a>
   <a href="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml"><img src="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
+    <a href="https://www.npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery?color=729B1B&label="></a>
 </p>
 
 ## Installation
