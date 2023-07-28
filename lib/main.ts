@@ -4,10 +4,31 @@ class MagicLottery<T> {
   private shuffle: (input: T[]) => T[];
   public channelName?: string;
 
-  constructor(entries: T[], shuffle?: (input: T[]) => T[]) {
+  constructor(
+    entries: T[],
+    shuffle?: (input: T[]) => T[],
+    channelName?: string
+  ) {
     this.entries = entries;
     this.shuffle = shuffle || this.defaultShuffle;
-    this.channelName = this.channelName;
+    this.shuffledEntries = this.shuffle([...this.entries]);
+    this.channelName = channelName;
+  }
+
+  /**
+   * Set the channel name.
+   * @param channelName - The name of the channel.
+   */
+  setChannelName(channelName: string): void {
+    this.channelName = channelName;
+  }
+
+  /**
+   * Get the channel name.
+   * @returns The name of the channel or undefined if not set.
+   */
+  getChannelName(): string | undefined {
+    return this.channelName;
   }
 
   /**
@@ -37,23 +58,26 @@ class MagicLottery<T> {
 
   /**
    * Draw the first winner from the shuffled entries.
-   * @returns The first winner or undefined if there are no entries.
+   * @returns The first winner. Throws an error if there is no entry.
    */
-  drawWinner(): T | undefined {
-    return this.shuffledEntries[0];
+  drawWinner(): T {
+    if (this.shuffledEntries.length > 0) {
+      return this.shuffledEntries[0];
+    } else {
+      throw new Error("At least one entry is required.");
+    }
   }
 
   /**
    * Draw a specified number of winners from the shuffled entries.
    * @param num - The number of winners to draw.
-   * @returns The winners or null if the requested number of winners exceeds the total entries.
+   * @returns The winners. Throws an error if the requested number of winners exceeds the total entries.
    */
-  drawWinners(num: number): T[] | null {
+  drawWinners(num: number): T[] {
     if (num <= this.shuffledEntries.length) {
       return this.shuffledEntries.slice(0, num);
     } else {
-      console.error("Requested number of winners exceeds the total entries.");
-      return null;
+      throw new Error("Requested number of winners exceeds the total entries.");
     }
   }
 
