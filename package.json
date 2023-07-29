@@ -8,7 +8,7 @@
   "homepage": "https://github.com/logeast/magic-lottery",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/logeast/magic-lottery.git",
+    "url": "git+https://github.com/logeast/magic-lottery.git"
   },
   "keywords": [
     "lottery",
