@@ -62,11 +62,11 @@ For more examples, please refer to the [official documentation]().
 
 ## Contributing
 
-Refer to our [Contributing Guide](CONTRIBUTING.md).
+Refer to our [Contributing Guide](https://github.com/logeast/magic-lottery/blob/main/CONTRIBUTING.md).
 
 ## License
 
-[MIT](LICENSE).
+[MIT](https://github.com/logeast/magic-lottery/blob/main/LICENSE).
 
 [ci-badge]: https://github.com/logeast/magic-lottery/actions/workflows/ci.yml/badge.svg
 [ci-link]: https://github.com/logeast/magic-lottery/actions/workflows/ci.yml
