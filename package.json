@@ -4,7 +4,7 @@
   "type": "module",
   "license": "MIT",
   "author": "logeast",
-  "description": "A magic tool makes your lucky draws simpler.",
+  "description": "A magic library makes your lucky draws simpler.",
   "homepage": "https://github.com/logeast/magic-lottery",
   "repository": {
     "type": "git",
