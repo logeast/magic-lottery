@@ -15,6 +15,14 @@ export default defineConfig({
           " lottery, Fisher-Yates Shuffle, magic lottery, lucky, random, shuffle, raffle, prize, winner",
       },
     ],
+    [
+      "link",
+      {
+        rel: "icon",
+        href: "https://logeast.cc/cdn/imghub/logo.png",
+        sizes: "any",
+      },
+    ],
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -50,5 +58,9 @@ export default defineConfig({
       { icon: "twitter", link: "https://twitter.com/logeast4" },
       { icon: "github", link: "https://github.com/logeast/magic-lottery" },
     ],
+    footer: {
+      message: "Released under the MIT License.",
+      copyright: "Copyright © 2023-PRESENT logeast.cc",
+    },
   },
 });

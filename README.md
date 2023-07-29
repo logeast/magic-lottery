@@ -1,4 +1,4 @@
-# MagicLottery
+# Magic Lottery
 
 [![ci][ci-badge]][ci-link]
 ![ts][ts-badge]
@@ -7,13 +7,13 @@
 ![commit][commit-badge]
 ![license][license-badge]
 
-MagicLottery is an intuitive library aimed at simplifying your lottery experiences to make them simpler, more enjoyable, and fair.
+Magic Lottery is an intuitive library aimed at simplifying your lottery experiences to make them simpler, more enjoyable, and fair.
 
-MagicLottery uses the [Fisher-Yates Shuffle Algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) as the default shuffling method.
+Magic Lottery uses the [Fisher-Yates Shuffle Algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) as the default shuffling method.
 
 ## Installation
 
-To install MagicLottery, use npm/yarn/pnpm. Execute the following command in your terminal:
+To install Magic Lottery, use npm/yarn/pnpm. Execute the following command in your terminal:
 
 ```bash
 npm install magic-lottery
@@ -25,7 +25,7 @@ pnpm add magic-lottery
 
 ## Usage Example
 
-Here's a simple usage case for the MagicLottery.
+Here's a simple usage case for the Magic Lottery.
 
 ```js
 import MagicLottery from "magic-lottery";

@@ -1,6 +1,6 @@
 # API Documentation
 
-The following is the full class structure with type signatures and method descriptions for MagicLottery.
+The following is the full class structure with type signatures and method descriptions for Magic Lottery.
 
 ```ts
 class MagicLottery<T> {
@@ -35,7 +35,7 @@ class MagicLottery<T> {
 
 ## Importing or require
 
-To use the MagicLottery class in your project, you need to import it.
+To use the Magic Lottery class in your project, you need to import it.
 
 ### browser
 
@@ -51,7 +51,7 @@ import MagicLottery from "magic-lottery";
 
 ### Node.js Environment
 
-In a Node.js environment, you can use the CommonJS require syntax to import the MagicLottery class:
+In a Node.js environment, you can use the CommonJS require syntax to import the Magic Lottery class:
 
 ```ts
 const { MagicLottery } = require("magic-lottery");

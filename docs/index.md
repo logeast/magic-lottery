@@ -2,6 +2,9 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
+title: Magic Lottery
+titleTemplate: A magic library makes your lucky draws simpler
+
 hero:
   name: "Magic Lottery"
   text: "Simplifying Lottery Experiences"
