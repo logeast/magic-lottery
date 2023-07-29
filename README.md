@@ -1,12 +1,15 @@
 # MagicLottery
 
-Magic Lottery is an intuitive library aimed at simplifying your lottery experiences to make them simpler, more enjoyable, and fair.
+[![ci][ci-badge]][ci-link]
+![ts][ts-badge]
+[![download-badge]][download-link]
+![version][version-badge]
+![commit][commit-badge]
+![license][license-badge]
 
-<p align="center">
-  <a href="https://npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery.svg" alt="npm package"></a>
-  <a href="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml"><img src="https://github.com/logeast/magic-lottery/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
-    <a href="https://www.npmjs.com/package/magic-lottery"><img src="https://img.shields.io/npm/v/magic-lottery?color=729B1B&label="></a>
-</p>
+MagicLottery is an intuitive library aimed at simplifying your lottery experiences to make them simpler, more enjoyable, and fair.
+
+MagicLottery uses the [Fisher-Yates Shuffle Algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) as the default shuffling method.
 
 ## Installation
 
@@ -22,66 +25,40 @@ pnpm add magic-lottery
 
 ## Usage Example
 
-Here's a demonstration of how to use the MagicLottery API:
+Here's a simple usage case for the MagicLottery.
 
-```javascript
+```js
 import MagicLottery from "magic-lottery";
 
-// Instantiate MagicLottery with an array of numbers as entries
-let lottery = new MagicLottery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+// Create a new MagicLottery instance
+const lottery = new MagicLottery(["Alice", "Bob", "Charlie"]);
 
-// Fetch the current entries
-console.log(lottery.getEntries()); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// Add more entries to the lottery
+lottery.add(["David", "Eve"]);
 
-// Replace entries
-lottery.setEntries([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
-console.log(lottery.getEntries()); // [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+// Draw all shuffled entries
+console.log(lottery.draw());
 
-// Shuffle using the existing shuffle algorithm
-let shuffledEntries = lottery.getShuffleAlgorithm()(lottery.getEntries());
-console.log(shuffledEntries); 
+// Draw the first winner from the shuffled entries
+console.log(lottery.drawWinner());
 
-// Implement a new shuffle algorithm
-lottery.setShuffleAlgorithm((input) => input.sort(() => Math.random() - 0.5));
+// Draw a specified number of winners from the shuffled entries
+console.log(lottery.drawWinners(2));
 
-// Shuffle using the new shuffle algorithm
-shuffledEntries = lottery.getShuffleAlgorithm()(lottery.getEntries());
-console.log(shuffledEntries);
+// Check if an entry is in the lottery
+console.log(lottery.hasEntry("Alice"));
+
+// Get the size of the lottery
+console.log(lottery.size());
+
+// Check if the lottery is empty
+console.log(lottery.isEmpty());
+
+// Reset the lottery
+lottery.reset();
 ```
 
-This example shows you how to create a new MagicLottery instance, fetch and replace entries, get and set a shuffle algorithm, and shuffle entries utilizing the currently specified shuffle algorithm.
-
-## API Documentation
-
-MagicLottery<T> is a generic class that operates as a customizable lottery system.
-
-### Constructor: MagicLottery(entries: T[], shuffleAlgorithm?: (input: T[]) => T[])
-
-Generates a new MagicLottery instance taking an array of unique entries and an optional custom shuffle algorithm.
-
-### Method: setEntries(entries: T[]): void 
-
-Resets the entries within the lottery.
-
-### Method: getEntries(): T[]
-
-Returns a copy of the current entries list.
-
-### Method: setShuffleAlgorithm(shuffleAlgorithm: (input: T[]) => T[]): void
-
-Allocates a new shuffling algorithm for the lottery.
-
-### Method: getShuffleAlgorithm(): (input: T[]) => T[]
-
-Fetches the shuffle algorithm currently utilized by the lottery.
-
-### Method: defaultShuffle(input: T[]): T[]
-
-Private method implementing the Fisher-Yates shuffle algorithm, this is used by default if no custom algorithm is provided.
-
-## Export
-
-The MagicLottery class is exported by default from this module.
+For more examples, please refer to the [official documentation]().
 
 ## Contributing
 
@@ -90,3 +67,12 @@ Refer to our [Contributing Guide](CONTRIBUTING.md).
 ## License
 
 [MIT](LICENSE).
+
+[ci-badge]: https://github.com/logeast/magic-lottery/actions/workflows/ci.yml/badge.svg
+[ci-link]: https://github.com/logeast/magic-lottery/actions/workflows/ci.yml
+[ts-badge]: https://badgen.net/badge/-/TypeScript/blue?icon=typescript&label
+[download-badge]: https://img.shields.io/npm/dm/magic-lottery
+[download-link]: https://www.npmjs.com/search?q=magic-lottery
+[version-badge]: https://img.shields.io/npm/v/magic-lottery.svg
+[commit-badge]: https://img.shields.io/github/commit-activity/m/logeast/magic-lottery
+[license-badge]: https://img.shields.io/github/license/logeast/magic-lottery

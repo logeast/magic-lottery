@@ -26,3 +26,7 @@ To develop and test the lib:
     5. Once your pull request is approved, it will be merged into the main branch.
 
 For any additional questions, please contact logeast@outlook.com.
+
+## License
+
+By contributing to MagicLottery, you agree that your contributions will be licensed under its MIT license.
