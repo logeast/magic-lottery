@@ -70,10 +70,10 @@ If your Node.js environment supports ES6 modules, you can use the import syntax 
   `constructor` initializes a new instance of `MagicLottery`. It takes an array of entries and an optional shuffle function. If no shuffle function is provided, a default Fisher-Yates shuffle implementation is used. An optional channel name can also be provided.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
 
   // With custom shuffle method & channel name
-  let anotherLottery = new MagicLottery<number>(
+  const anotherLottery = new MagicLottery<number>(
     [1, 2, 3, 4, 5],
     (input) => input.reverse(),
     "Weekly Draw"
@@ -89,7 +89,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `setChannelName` allows you to specify a channel name for your current lottery instance.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3]);
+  const lottery = new MagicLottery<number>([1, 2, 3]);
   lottery.setChannelName("Daily Draw");
   ```
 
@@ -100,7 +100,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `getChannelName` returns the name of your current lottery channel or undefined if it hasn't been set.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3]);
+  const lottery = new MagicLottery<number>([1, 2, 3]);
   lottery.setChannelName("Daily Draw");
   console.log(lottery.getChannelName()); // 'Daily Draw'
   ```
@@ -112,7 +112,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `add` enables you to add more entries to your lottery pool.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3]);
+  const lottery = new MagicLottery<number>([1, 2, 3]);
   lottery.add([4, 5, 6]); // The lottery now includes 1 through 6.
   ```
 
@@ -123,7 +123,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `draw` allows you to draw all the shuffled entries from your lottery.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3]);
+  const lottery = new MagicLottery<number>([1, 2, 3]);
   console.log(lottery.draw()); // Array of shuffled numbers
   ```
 
@@ -134,7 +134,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `drawOriginal` draws all the original, unshuffled entries from your lottery.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3]);
+  const lottery = new MagicLottery<number>([1, 2, 3]);
   console.log(lottery.drawOriginal()); // [1, 2, 3]
   ```
 
@@ -145,7 +145,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `drawWinner` pulls the first winner from the shuffled entries.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3]);
+  const lottery = new MagicLottery<number>([1, 2, 3]);
   console.log(`The winner is: ${lottery.drawWinner()}`);
   ```
 
@@ -156,7 +156,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `drawWinners` extracts a specified number of winners from the shuffled entries.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   console.log(`The winners are: ${lottery.drawWinners(2)}`);
   ```
 
@@ -167,7 +167,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `setShuffle` allows you to define a custom shuffle method for your lottery.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   lottery.setShuffle((input) => input.reverse());
   ```
 
@@ -178,8 +178,8 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `getShuffle` returns the current shuffle method being used by the lottery instance.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
-  let currentShuffleMethod = lottery.getShuffle();
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const currentShuffleMethod = lottery.getShuffle();
   ```
 
 ## remove
@@ -189,7 +189,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `remove` removes a specific entry from the lottery.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   lottery.remove(3); // Removes '3' from the list of entries.
   ```
 
@@ -200,7 +200,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `hasEntry` checks whether a particular entry exists in your lottery.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   console.log(lottery.hasEntry(3)); // True
   ```
 
@@ -211,7 +211,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `size` retrieves the number of entries currently in the lottery.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   console.log(lottery.size()); // '5'
   ```
 
@@ -222,7 +222,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `isEmpty` verifies whether or not the lottery is empty.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   console.log(lottery.isEmpty()); // False
   ```
 
@@ -233,7 +233,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `reset` helps you clear all the entries from your current lottery instance.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   lottery.reset();
   console.log(lottery.isEmpty()); // True
   ```
@@ -245,7 +245,7 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
   `nextWinner` removes the first element from the shuffled entries and resolves with it, returning a Promise.
 
   ```ts
-  let lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
+  const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
   lottery.nextWinner().then((winner) => console.log(winner)); // logs winner
   ```
 
