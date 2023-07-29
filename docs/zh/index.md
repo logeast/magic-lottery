@@ -28,6 +28,6 @@ features:
     details: 该类提供了抽取条目的方法。你可以抽取所有洗牌后的条目，第一名获奖者，或指定数量的获奖者。
     icon: 🦀
   - title: 洗牌控制
-    details: 你可以设置自定义洗牌方法。默认情况下，它使用Fisher-Yates洗牌算法来洗牌条目。
+    details: 你可以设置自定义洗牌方法。默认情况下，它使用 Fisher-Yates 洗牌算法来洗牌条目。
     icon: 🐬
 ---
