@@ -58,7 +58,7 @@ console.log(lottery.isEmpty());
 lottery.reset();
 ```
 
-For more examples, please refer to the [official documentation]().
+For more examples, please refer to the [official documentation](https://logeast.github.io/magic-lottery).
 
 ## Contributing
 
