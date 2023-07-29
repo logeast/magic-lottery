@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/magic-lottery/",
   title: "Magic Lottery",
   description: "A magic tool makes your lucky draws simpler.",
   head: [
@@ -17,7 +18,7 @@ export default defineConfig({
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: 'https://logeast.cc/cdn/imghub/logo.png',
+    logo: "https://logeast.cc/cdn/imghub/logo.png",
 
     editLink: {
       pattern: "https://github.com/logeast/magic-lottery/tree/main/docs/:path",
