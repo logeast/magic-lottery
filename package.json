@@ -39,7 +39,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint --cache .",
-    "release": "bumpp package.json --commit --push --tag && git update-ref refs/heads/release refs/heads/main && git push origin release && pnpm publish --access public"
+    "release": "bumpp package.json --commit --push --tag && git update-ref refs/heads/release refs/heads/main && git push origin release && pnpm publish --access public",
+    "docs:build": "cd docs && pnpm build"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.8",
