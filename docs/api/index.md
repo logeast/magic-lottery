@@ -3,25 +3,26 @@
 The following is the full class structure with type signatures and method descriptions for Magic Lottery.
 
 ```ts
-class MagicLottery<T> {
-  private entries: T[];
-  private shuffledEntries: T[];
-  private shuffle: (input: T[]) => T[];
-  public channelName?: string;
+interface Options<T> {
+  shuffle?: (input: T[]) => T[];
+  channelName?: string;
+  replacement?: boolean;
+}
 
-  constructor(
-    entries: T[],
-    shuffle?: (input: T[]) => T[],
-    channelName?: string
-  );
+interface DrawOptions<T> {
+  replacement?: Options<T>["replacement"];
+}
+
+class MagicLottery<T> {
+  constructor(entries: T[], options: Options<T>);
 
   setChannelName(channelName: string): void;
   getChannelName(): string | undefined;
   add(entries: T[]): void;
   draw(): T[];
   drawOriginal(): T[];
-  drawWinner(): T;
-  drawWinners(num: number): T[];
+  drawWinner(options: DrawOptions<T>): T;
+  drawWinners(num: number, options: DrawOptions<T>): T[];
   setShuffle(shuffle: (input: T[]) => T[]): void;
   getShuffle(): (input: T[]) => T[];
   remove(entry: T): void;
@@ -29,7 +30,7 @@ class MagicLottery<T> {
   size(): number;
   isEmpty(): boolean;
   reset(): void;
-  async nextWinner(): Promise<T | undefined>;
+  async nextWinner(options: DrawOptions<T>): Promise<T | undefined>;
 }
 ```
 
@@ -65,19 +66,22 @@ If your Node.js environment supports ES6 modules, you can use the import syntax 
 
 ## constructor
 
-- **Type:** `(entries: T[], shuffle?: (input: T[]) => T[], channelName?: string) => MagicLottery<T>`
+- **Type:** `(entries: T[], options: Options<T>) => MagicLottery<T>`
 
-  `constructor` initializes a new instance of `MagicLottery`. It takes an array of entries and an optional shuffle function. If no shuffle function is provided, a default Fisher-Yates shuffle implementation is used. An optional channel name can also be provided.
+  `constructor` initializes a new instance of `MagicLottery`. It takes an array of entries and an options object. The options object can include a shuffle function, a channelName, and a replacement boolean.
+
+  - If no shuffle function is provided, a default Fisher-Yates shuffle implementation is used.
+  - By defult, replacement is set to ture, drawn entries will be put back into the pool for feature draws.
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
 
-  // With custom shuffle method & channel name
-  const anotherLottery = new MagicLottery<number>(
-    [1, 2, 3, 4, 5],
-    (input) => input.reverse(),
-    "Weekly Draw"
-  );
+  // With custom shuffle method & channel name & no replacement
+  const anotherLottery = new MagicLottery<number>([1, 2, 3, 4, 5], {
+    shuffle: (input) => input.reverse(),
+    channelName: "Weekly Draw",
+    replacement: false,
+  });
   ```
 
 In the second example, the lottery is initialized with entries 1 to 5, with a shuffle method that reverses the list, and a `channelName` of 'Weekly Draw'.
@@ -140,9 +144,13 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
 
 ## drawWinner
 
-- **Type:** `() => T`
+- **Type:** `(options?: DrawOptions<T>) => T`
 
   `drawWinner` pulls the first winner from the shuffled entries.
+
+  ::: tip
+  If the `replacement` option is set to `false`, the drawn entry will not be put back into the pool for future draws.
+  :::
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3]);
@@ -151,9 +159,13 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
 
 ## drawWinners
 
-- **Type:** `(num: number) => T[]`
+- **Type:** `(num: number, options?: DrawOptions<T>) => T[]`
 
   `drawWinners` extracts a specified number of winners from the shuffled entries.
+
+  ::: tip
+  If the `replacement` option is set to `false`, the drawn entry will not be put back into the pool for future draws.
+  :::
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
@@ -240,9 +252,13 @@ In the second example, the lottery is initialized with entries 1 to 5, with a sh
 
 ## nextWinner
 
-- **Type:** `() => Promise<T | undefined>`
+- **Type:** `(options?: DrawOptions<T>) => Promise<T | undefined>`
 
   `nextWinner` removes the first element from the shuffled entries and resolves with it, returning a Promise.
+
+  ::: tip
+  If the `replacement` option is set to `false`, the drawn entry will not be put back into the pool for future draws.
+  :::
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);

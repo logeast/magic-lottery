@@ -3,25 +3,26 @@
 以下是 Magic Lottery 的完整类结构，包括类型签名和方法描述。
 
 ```ts
-class MagicLottery<T> {
-  private entries: T[];
-  private shuffledEntries: T[];
-  private shuffle: (input: T[]) => T[];
-  public channelName?: string;
+interface Options<T> {
+  shuffle?: (input: T[]) => T[];
+  channelName?: string;
+  replacement?: boolean;
+}
 
-  constructor(
-    entries: T[],
-    shuffle?: (input: T[]) => T[],
-    channelName?: string
-  );
+interface DrawOptions<T> {
+  replacement?: Options<T>["replacement"];
+}
+
+class MagicLottery<T> {
+  constructor(entries: T[], options: Options<T>);
 
   setChannelName(channelName: string): void;
   getChannelName(): string | undefined;
   add(entries: T[]): void;
   draw(): T[];
   drawOriginal(): T[];
-  drawWinner(): T;
-  drawWinners(num: number): T[];
+  drawWinner(options: DrawOptions<T>): T;
+  drawWinners(num: number, options: DrawOptions<T>): T[];
   setShuffle(shuffle: (input: T[]) => T[]): void;
   getShuffle(): (input: T[]) => T[];
   remove(entry: T): void;
@@ -29,7 +30,7 @@ class MagicLottery<T> {
   size(): number;
   isEmpty(): boolean;
   reset(): void;
-  async nextWinner(): Promise<T | undefined>;
+  async nextWinner(options: DrawOptions<T>): Promise<T | undefined>;
 }
 ```
 
@@ -65,19 +66,22 @@ const MagicLottery = require("magic-lottery");
 
 ## 构造函数
 
-- **类型:** `(entries: T[], shuffle?: (input: T[]) => T[], channelName?: string) => MagicLottery<T>`
+- **类型:** `(entries: T[], options: Options<T>) => MagicLottery<T>`
 
-  `constructor` 初始化一个新的 `MagicLottery` 实例。它接受一个条目数组和一个可选的洗牌函数。如果没有提供洗牌函数，将使用默认的 Fisher-Yates 洗牌实现。也可以提供一个可选的频道名称。
+  `constructor` 初始化一个新的 `MagicLottery` 实例。它接受一个条目数组和一个选项对象。选项对象可以包括一个洗牌函数，一个频道名称，和一个替换布尔值。
+
+- 如果没有提供洗牌函数，将使用默认的 Fisher-Yates 洗牌实现。
+- 默认情况下，替换被设置为真，抽出的条目将被放回到未来的抽奖池中。
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
 
-  // 使用自定义洗牌方法和频道名称
-  const anotherLottery = new MagicLottery<number>(
-    [1, 2, 3, 4, 5],
-    (input) => input.reverse(),
-    "Weekly Draw"
-  );
+  // 使用自定义洗牌方法和频道名称和不放回
+  const anotherLottery = new MagicLottery<number>([1, 2, 3, 4, 5], {
+    shuffle: (input) => input.reverse(),
+    channelName: "Weekly Draw",
+    replacement: false,
+  });
   ```
 
 在第二个例子中，抽奖初始化了 1 到 5 的条目，使用了一个将列表反转的洗牌方法，并设置了 `channelName` 为 'Weekly Draw'。
@@ -140,9 +144,13 @@ const MagicLottery = require("magic-lottery");
 
 ## drawWinner
 
-- **类型:** `() => T`
+- **类型:** `(options?: DrawOptions<T>) => T`
 
   `drawWinner` 从洗牌后的条目中抽取第一个获奖者。
+
+  ::: tip
+  如果 replacement 选项设置为 false，则抽取的条目将不会被放回未来的抽奖池中。
+  :::
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3]);
@@ -151,9 +159,13 @@ const MagicLottery = require("magic-lottery");
 
 ## drawWinners
 
-- **类型:** `(num: number) => T[]`
+- **类型:** `(num: number, options?: DrawOptions<T>) => T[]`
 
   `drawWinners` 从洗牌后的条目中抽取指定数量的获奖者。
+
+  ::: tip
+  如果 replacement 选项设置为 false，则抽取的条目将不会被放回未来的抽奖池中。
+  :::
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);
@@ -240,9 +252,13 @@ const MagicLottery = require("magic-lottery");
 
 ## nextWinner
 
-- **类型:** `() => Promise<T | undefined>`
+- **类型:** `(options?: DrawOptions<T>) => Promise<T | undefined>`
 
   `nextWinner` 从洗牌后的条目中移除第一个元素并解析它，返回一个 Promise。
+
+  ::: tip
+  如果 replacement 选项设置为 false，则抽取的条目将不会被放回未来的抽奖池中。
+  :::
 
   ```ts
   const lottery = new MagicLottery<number>([1, 2, 3, 4, 5]);

@@ -1,7 +1,26 @@
 interface Options<T> {
+  /**
+   * Optional shuffle function. If provided, this function will be used to shuffle the entries.
+   */
   shuffle?: (input: T[]) => T[];
+  /**
+   * Optional channel name. If provided, this name will be used as the channel name.
+   */
   channelName?: string;
+  /**
+   * @default true
+   * - By defult, replacement is set to ture, drawn entries will be put back into the pool for feature draws.
+   * - If true, the winner is not removed from the lottery and can be drawn again.
+   * - If false, the winner is removed from the lottery after being drawn.
+   */
   replacement?: boolean;
+}
+
+interface DrawOptions<T> {
+  /**
+   * By default, the value inherits from the `options.replacement` provided in the constructor.
+   */
+  replacement?: Options<T>["replacement"];
 }
 
 class MagicLottery<T> {
@@ -9,7 +28,7 @@ class MagicLottery<T> {
   private shuffledEntries: T[] = [];
   private shuffle: (input: T[]) => T[];
   private channelName?: string;
-  private replacement?: boolean;
+  private replacement: boolean;
 
   constructor(entries: T[], options: Options<T> = {}) {
     this.entries = entries;
@@ -18,7 +37,7 @@ class MagicLottery<T> {
     this.shuffledEntries = this.shuffle([...this.entries]);
 
     this.channelName = options.channelName;
-    this.replacement = options.replacement || false;
+    this.replacement = options.replacement || true;
   }
 
   /**
@@ -64,12 +83,15 @@ class MagicLottery<T> {
 
   /**
    * Draw the first winner from the shuffled entries.
+   * @param [options={ replacement: this.replacement }]
    * @returns The first winner. Throws an error if there is no entry.
    */
-  drawWinner(): T {
+  drawWinner(options: DrawOptions<T> = { replacement: this.replacement }): T {
+    const { replacement } = options;
+
     if (this.shuffledEntries.length > 0) {
       const winner = this.shuffledEntries[0];
-      if (!this.replacement) {
+      if (!replacement) {
         this.remove(winner);
       }
       return winner;
@@ -81,11 +103,21 @@ class MagicLottery<T> {
   /**
    * Draw a specified number of winners from the shuffled entries.
    * @param num - The number of winners to draw.
+   * @param [options={ replacement: this.replacement }]
    * @returns The winners. Throws an error if the requested number of winners exceeds the total entries.
    */
-  drawWinners(num: number): T[] {
+  drawWinners(
+    num: number,
+    options: DrawOptions<T> = { replacement: this.replacement }
+  ): T[] {
+    const { replacement } = options;
+
     if (num <= this.shuffledEntries.length) {
-      return this.shuffledEntries.slice(0, num);
+      const winners = this.shuffledEntries.slice(0, num);
+      if (!replacement) {
+        winners.forEach((winner) => this.remove(winner));
+      }
+      return winners;
     } else {
       throw new Error("Requested number of winners exceeds the total entries.");
     }
@@ -154,14 +186,19 @@ class MagicLottery<T> {
   }
 
   /**
-   * Draw the next winner from the shuffled entries and remove them from the lottery.
+   * Draw the next winner from the shuffled entries and optionally remove them from the lottery.
+   * @param [options={ replacement: this.replacement }]
    * @returns A promise that resolves with the next winner or rejects if there are no more entries left.
    */
-  async nextWinner(): Promise<T | undefined> {
+  async nextWinner(
+    options: DrawOptions<T> = { replacement: this.replacement }
+  ): Promise<T | undefined> {
+    const { replacement } = options;
+
     return new Promise((resolve, reject) => {
       if (this.shuffledEntries.length > 0) {
         const winner = this.shuffledEntries[0];
-        if (!this.replacement) {
+        if (!replacement) {
           this.remove(winner);
         }
         resolve(winner);

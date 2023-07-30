@@ -28,6 +28,15 @@ describe("Magic Lottery Options", () => {
     expect(lottery.hasEntry(winner)).toBe(true);
   });
 
+  test("drawWinners should set the replacement options", () => {
+    const initialSize = lottery.size();
+    const drawCount = 3;
+    lottery.drawWinners(drawCount, { replacement: false });
+    const finalSize = lottery.size();
+
+    expect(finalSize).toBe(initialSize - drawCount);
+  });
+
   test("nextWinner should set the replacement option", async () => {
     const winner = (await lottery.nextWinner()) || "";
     expect(lottery.hasEntry(winner)).toBe(true);
@@ -131,12 +140,12 @@ describe("Magic Lottery", () => {
   });
 
   test("nextWinner method draws the next winner and removes them from the lottery", async () => {
-    const winner = await lottery.nextWinner();
+    const winner = await lottery.nextWinner({ replacement: false });
     expect(winner).toBeDefined();
     expect(lottery.size()).toBe(4);
 
     const winner2 = await lottery.nextWinner();
     expect(winner2).toBeDefined();
-    expect(lottery.size()).toBe(3);
+    expect(lottery.size()).toBe(4);
   });
 });
