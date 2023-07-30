@@ -1,7 +1,40 @@
 import { describe, expect, test, beforeEach, afterEach } from "vitest";
 import MagicLottery from "./main";
 
-describe("MagicLottery", () => {
+describe("Magic Lottery Options", () => {
+  let lottery: MagicLottery<string>;
+
+  beforeEach(() => {
+    lottery = new MagicLottery(["Alice", "Bob", "Charlie"], {
+      channelName: "Test Channel",
+      shuffle: (input: string[]) => input.reverse(),
+      replacement: true,
+    });
+  });
+
+  test("should set the channel name", () => {
+    expect(lottery.getChannelName()).toBe("Test Channel");
+  });
+
+  test("should apply the shuffle function", () => {
+    const originalEntries = lottery.drawOriginal();
+    const shuffledEntries = lottery.draw();
+
+    expect(shuffledEntries).toEqual(originalEntries.reverse());
+  });
+
+  test("drawWinner should set the replacement option", () => {
+    const winner = lottery.drawWinner() || "";
+    expect(lottery.hasEntry(winner)).toBe(true);
+  });
+
+  test("nextWinner should set the replacement option", async () => {
+    const winner = (await lottery.nextWinner()) || "";
+    expect(lottery.hasEntry(winner)).toBe(true);
+  });
+});
+
+describe("Magic Lottery", () => {
   let lottery: MagicLottery<number>;
 
   beforeEach(() => {
@@ -14,7 +47,7 @@ describe("MagicLottery", () => {
 
   test("setChannelName and getChannelName method handle set and get a channel name", () => {
     expect(lottery.getChannelName()).toBeUndefined();
-    
+
     lottery.setChannelName("Test Channel");
     expect(lottery.getChannelName()).toBe("Test Channel");
   });

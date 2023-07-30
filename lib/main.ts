@@ -1,18 +1,24 @@
+interface Options<T> {
+  shuffle?: (input: T[]) => T[];
+  channelName?: string;
+  replacement?: boolean;
+}
+
 class MagicLottery<T> {
   private entries: T[] = [];
   private shuffledEntries: T[] = [];
   private shuffle: (input: T[]) => T[];
-  public channelName?: string;
+  private channelName?: string;
+  private replacement?: boolean;
 
-  constructor(
-    entries: T[],
-    shuffle?: (input: T[]) => T[],
-    channelName?: string
-  ) {
+  constructor(entries: T[], options: Options<T> = {}) {
     this.entries = entries;
-    this.shuffle = shuffle || this.defaultShuffle;
+
+    this.shuffle = options.shuffle || this.defaultShuffle;
     this.shuffledEntries = this.shuffle([...this.entries]);
-    this.channelName = channelName;
+
+    this.channelName = options.channelName;
+    this.replacement = options.replacement || false;
   }
 
   /**
@@ -62,7 +68,11 @@ class MagicLottery<T> {
    */
   drawWinner(): T {
     if (this.shuffledEntries.length > 0) {
-      return this.shuffledEntries[0];
+      const winner = this.shuffledEntries[0];
+      if (!this.replacement) {
+        this.remove(winner);
+      }
+      return winner;
     } else {
       throw new Error("At least one entry is required.");
     }
@@ -151,7 +161,9 @@ class MagicLottery<T> {
     return new Promise((resolve, reject) => {
       if (this.shuffledEntries.length > 0) {
         const winner = this.shuffledEntries[0];
-        this.remove(winner);
+        if (!this.replacement) {
+          this.remove(winner);
+        }
         resolve(winner);
       } else {
         reject("No more entries left.");
