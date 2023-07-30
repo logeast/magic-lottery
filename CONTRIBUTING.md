@@ -1,6 +1,6 @@
-# MagicLottery Contributing Guide
+# Magic Lottery Contributing Guide
 
-Hi! We're really excited that you're interested in contributing to MagicLottery!
+Hi! We're really excited that you're interested in contributing to Magic Lottery!
 
 Before submitting your comtribution, please read through the fllowing guide.
 
@@ -10,12 +10,12 @@ To develop locally, fork this repository and clone it in your local machine. The
 
 To develop and test the lib:
 
-1. Run `pnpm i` in MagicLottery's root folder.
-2. Run `pnpm build` in MagicLottery's root folder.
+1. Run `pnpm i` in Magic Lottery's root folder.
+2. Run `pnpm build` in Magic Lottery's root folder.
 
 ## Running Test
 
-1. Run `pnpm test` in MagicLottery's root folder.
+1. Run `pnpm test` in Magic Lottery's root folder.
 
 ## Pull Request Guidelines
 
@@ -29,4 +29,4 @@ For any additional questions, please contact logeast@outlook.com.
 
 ## License
 
-By contributing to MagicLottery, you agree that your contributions will be licensed under its MIT license.
+By contributing to Magic Lottery, you agree that your contributions will be licensed under its MIT license.
