@@ -9,11 +9,27 @@ export default defineConfig({
     root: {
       label: "English",
       lang: "en-US",
+      themeConfig: {
+        logo: "https://logeast.cc/cdn/imghub/logo-pure.png",
+        nav: [
+          { text: "Guide", link: "/guide/index.md" },
+          { text: "API", link: "/api/index.md" },
+          { text: "Cases", link: "/cases/index.md" },
+        ],
+      },
     },
     zh: {
       label: "简体中文",
       lang: "zh",
       title: "魔法抽奖",
+      themeConfig: {
+        logo: "https://logeast.cc/cdn/imghub/logo.png",
+        nav: [
+          { text: "指引", link: "zh/guide/index.md" },
+          { text: "API", link: "zh/api/index.md" },
+          { text: "实例", link: "zh/cases/index.md" },
+        ],
+      },
     },
   },
   head: [
@@ -42,11 +58,6 @@ export default defineConfig({
       pattern: "https://github.com/logeast/magic-lottery/tree/main/docs/:path",
       text: "Suggest changes to this page",
     },
-    nav: [
-      { text: "Guide", link: "/guide/index.md" },
-      { text: "API", link: "/api/index.md" },
-      { text: "Cases", link: "/cases/index.md" },
-    ],
     search: {
       provider: "local",
     },
