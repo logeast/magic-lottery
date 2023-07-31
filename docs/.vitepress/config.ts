@@ -49,6 +49,17 @@ export default defineConfig({
             sizes: "any",
           },
         ],
+        [
+          "script",
+          { id: "baidu-tongji" },
+          `;var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?7a3f38be1ca1be7a33531917f514cf52";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();`,
+        ],
       ],
     },
   },
