@@ -17,6 +17,16 @@ export default defineConfig({
           { text: "Cases", link: "/cases/index.md" },
         ],
       },
+      head: [
+        [
+          "link",
+          {
+            rel: "icon",
+            href: "https://logeast.cc/cdn/imghub/logo-pure.png",
+            sizes: "any",
+          },
+        ],
+      ],
     },
     zh: {
       label: "简体中文",
@@ -30,6 +40,16 @@ export default defineConfig({
           { text: "实例", link: "zh/cases/index.md" },
         ],
       },
+      head: [
+        [
+          "link",
+          {
+            rel: "icon",
+            href: "https://logeast.cc/cdn/imghub/logo.png",
+            sizes: "any",
+          },
+        ],
+      ],
     },
   },
   head: [
@@ -40,14 +60,6 @@ export default defineConfig({
         name: "keywords",
         content:
           " lottery, Fisher-Yates Shuffle, magic lottery, lucky, random, shuffle, raffle, prize, winner",
-      },
-    ],
-    [
-      "link",
-      {
-        rel: "icon",
-        href: "https://logeast.cc/cdn/imghub/logo.png",
-        sizes: "any",
       },
     ],
   ],

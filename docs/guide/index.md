@@ -47,6 +47,9 @@ console.log(lottery.size());
 // Check if the lottery is empty
 console.log(lottery.isEmpty());
 
+// Draw next winner async
+lottery.nextWinner().then((winner) => console.log(winner));
+
 // Reset the lottery
 lottery.reset();
 ```

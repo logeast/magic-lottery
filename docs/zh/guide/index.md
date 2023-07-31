@@ -47,6 +47,9 @@ console.log(lottery.size());
 // 检查抽奖是否为空
 console.log(lottery.isEmpty());
 
+// 异步抽取下一个获胜者
+lottery.nextWinner().then((winner) => console.log(winner));
+
 // 重置抽奖
 lottery.reset();
 ```
