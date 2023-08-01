@@ -28,7 +28,7 @@
   "module": "./dist/magic-lottery.js",
   "exports": {
     ".": {
-      "import": "./dist/magic-lottery.jd",
+      "import": "./dist/magic-lottery.js",
       "require": "./dist/magic-lottery.umd.cjs"
     }
   },
