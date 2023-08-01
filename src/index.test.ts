@@ -1,5 +1,5 @@
 import { describe, expect, test, beforeEach, afterEach } from "vitest";
-import MagicLottery from "./main";
+import { MagicLottery } from ".";
 
 describe("Magic Lottery Options", () => {
   let lottery: MagicLottery<string>;

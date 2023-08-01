@@ -1,4 +1,4 @@
-import MagicLottery from "../../../dist/magic-lottery.js";
+import MagicLottery from "magic-lottery";
 
 const lottery = new MagicLottery([]);
 

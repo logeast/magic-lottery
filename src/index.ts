@@ -235,5 +235,9 @@ class MagicLottery<T> {
   }
 }
 
+/**
+ * This is the default export, but named exports are recommended for future usage.
+ */
 export default MagicLottery;
+
 export { MagicLottery, MagicLottery as Lottery };

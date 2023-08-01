@@ -22,16 +22,12 @@
     "winner"
   ],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
-  "main": "./dist/magic-lottery.umd.cjs",
-  "module": "./dist/magic-lottery.js",
-  "exports": {
-    ".": {
-      "import": "./dist/magic-lottery.js",
-      "require": "./dist/magic-lottery.umd.cjs"
-    }
-  },
+  "main": "lib/index.umd.cjs",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -52,6 +48,7 @@
     "eslint": "^8.45.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.4.0",
     "vitepress": "1.0.0-beta.6",
     "vitest": "^0.33.0"
   }
