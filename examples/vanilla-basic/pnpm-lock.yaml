@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   magic-lottery:
-    specifier: ^1.2.4
-    version: 1.2.4
+    specifier: ^1.2.5
+    version: 1.2.5
 
 devDependencies:
   typescript:
@@ -255,8 +255,8 @@ packages:
     dev: true
     optional: true
 
-  /magic-lottery@1.2.4:
-    resolution: {integrity: sha512-Vjhm60QEghWiasg+YrCl87jnenUgSvmw33Gh80kbpgZOgEy6qbC+U1uHkCnHogw3yhFf9KEdOMsGTPgn3RMeLg==}
+  /magic-lottery@1.2.5:
+    resolution: {integrity: sha512-8bOgE1Af+wYhzu89DLWcfifL/g9JQ1zuJXdX7hzK9W0XsZAs9qaKPhiZEbVErFT2MaERDv+gQV93dlKTtM4XCA==}
     dev: false
 
   /nanoid@3.3.6:

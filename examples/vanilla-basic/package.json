@@ -13,6 +13,6 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "magic-lottery": "^1.2.4"
+    "magic-lottery": "^1.2.5"
   }
 }

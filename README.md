@@ -3,7 +3,7 @@
 [![ci][ci-badge]][ci-link]
 ![ts][ts-badge]
 [![download-badge]][download-link]
-![version][version-badge]
+[![version][version-badge]][download-link]
 ![commit][commit-badge]
 ![license][license-badge]
 
