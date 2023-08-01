@@ -25,9 +25,9 @@
     "dist",
     "src"
   ],
-  "main": "lib/index.umd.cjs",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.umd.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
