@@ -30,7 +30,7 @@ class MagicLottery<T> {
   private channelName?: string;
   private replacement: boolean;
 
-  constructor(entries: T[], options: Options<T> = {}) {
+  constructor(entries: T[] = [], options: Options<T> = {}) {
     this.entries = entries;
 
     this.shuffle = options.shuffle || this.defaultShuffle;

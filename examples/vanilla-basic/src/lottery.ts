@@ -1,6 +1,6 @@
 import MagicLottery from "magic-lottery";
 
-const lottery = new MagicLottery();
+const lottery = new MagicLottery([]);
 
 export function setupCounter(element: HTMLButtonElement) {
   let counter = 0;
