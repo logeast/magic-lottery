@@ -13,14 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const lottery = new MagicLottery(participants, options);
 
-  console.log("drawButton", drawButton);
   drawButton?.addEventListener("click", () => {
-    console.log("click");
-    const winner: string = lottery.drawWinner();
-    if (resultDiv) {
-      resultDiv.textContent = `恭喜 ${winner} 中奖！`;
+    for (let i = 0; i < 20; i++) {
+      setTimeout(() => {
+        const winner: string = lottery.drawWinner();
+        if (resultDiv) {
+          resultDiv.textContent = `恭喜 ${winner} 中奖！`;
+        }
+        rotateGrid(winner);
+      }, 500);
     }
-    rotateGrid(winner);
   });
 
   function rotateGrid(winner: string): void {

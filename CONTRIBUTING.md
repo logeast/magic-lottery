@@ -17,6 +17,10 @@ To develop and test the lib:
 
 1. Run `pnpm test` in Magic Lottery's root folder.
 
+## Running Document
+
+1. Run `pnpm docs:dev` in Magic Lottery's root folder and open http://127.0.0.1:5173 in your browser.
+
 ## Pull Request Guidelines
 
 1. Before you submit your pull request, make sure to review your changes thoroughly. This includes running all tests and checking for any performance issues.
