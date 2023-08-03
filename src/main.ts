@@ -66,6 +66,51 @@ class MagicLottery<T> {
   }
 
   /**
+   * Remove an entry from the lottery.
+   * @param entry - The entry to remove.
+   */
+  remove(entry: T): void {
+    const index = this.entries.indexOf(entry);
+    if (index > -1) {
+      this.entries.splice(index, 1);
+      this.shuffledEntries = this.shuffle([...this.entries]);
+    }
+  }
+
+  /**
+   * Check if an entry is in the lottery.
+   * @param entry - The entry to check.
+   * @returns True if the entry is in the lottery, false otherwise.
+   */
+  hasEntry(entry: T): boolean {
+    return this.entries.includes(entry);
+  }
+
+  /**
+   * Get the size of the lottery.
+   * @returns The size of the lottery.
+   */
+  size(): number {
+    return this.entries.length;
+  }
+
+  /**
+   * Check if the lottery is empty.
+   * @returns True if the lottery is empty, false otherwise.
+   */
+  isEmpty(): boolean {
+    return this.entries.length === 0;
+  }
+
+  /**
+   * Reset the lottery.
+   */
+  reset(): void {
+    this.entries = [];
+    this.shuffledEntries = [];
+  }
+
+  /**
    * Draw all shuffled entries.
    * @returns The shuffled entries.
    */
@@ -141,51 +186,6 @@ class MagicLottery<T> {
   }
 
   /**
-   * Remove an entry from the lottery.
-   * @param entry - The entry to remove.
-   */
-  remove(entry: T): void {
-    const index = this.entries.indexOf(entry);
-    if (index > -1) {
-      this.entries.splice(index, 1);
-      this.shuffledEntries = this.shuffle([...this.entries]);
-    }
-  }
-
-  /**
-   * Check if an entry is in the lottery.
-   * @param entry - The entry to check.
-   * @returns True if the entry is in the lottery, false otherwise.
-   */
-  hasEntry(entry: T): boolean {
-    return this.entries.includes(entry);
-  }
-
-  /**
-   * Get the size of the lottery.
-   * @returns The size of the lottery.
-   */
-  size(): number {
-    return this.entries.length;
-  }
-
-  /**
-   * Check if the lottery is empty.
-   * @returns True if the lottery is empty, false otherwise.
-   */
-  isEmpty(): boolean {
-    return this.entries.length === 0;
-  }
-
-  /**
-   * Reset the lottery.
-   */
-  reset(): void {
-    this.entries = [];
-    this.shuffledEntries = [];
-  }
-
-  /**
    * Draw the next winner from the shuffled entries and optionally remove them from the lottery.
    * @param [options={ replacement: this.replacement }]
    * @returns A promise that resolves with the next winner or rejects if there are no more entries left.
@@ -235,9 +235,4 @@ class MagicLottery<T> {
   }
 }
 
-/**
- * This is the default export, but named exports are recommended for future usage.
- */
 export default MagicLottery;
-
-export { MagicLottery, MagicLottery as Lottery };

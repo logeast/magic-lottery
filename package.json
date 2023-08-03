@@ -1,7 +1,12 @@
 {
   "name": "magic-lottery",
-  "version": "1.2.5",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
   "license": "MIT",
   "author": "logeast",
   "description": "A magic library makes your lucky draws simpler.",
@@ -21,35 +26,31 @@
     "prize",
     "winner"
   ],
-  "files": [
-    "dist",
-    "src"
-  ],
-  "main": "dist/index.umd.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/main.umd.cjs",
+  "module": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "lint": "eslint --cache .",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "lint": "eslint --cache .",
     "release": "bumpp package.json --commit --push --tag && git update-ref refs/heads/release refs/heads/main && git push origin release && pnpm publish --access public",
-    "docs:build": "cd docs && pnpm build",
-    "docs:dev": "cd docs && pnpm dev"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.8",
-    "@typescript-eslint/eslint-plugin": "^6.2.0",
-    "@typescript-eslint/parser": "^6.2.0",
-    "@vitest/coverage-v8": "^0.33.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "@vitest/coverage-v8": "^0.34.1",
     "bumpp": "^9.1.1",
-    "eslint": "^8.45.0",
+    "eslint": "^8.46.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.4.0",
-    "vitepress": "1.0.0-beta.6",
-    "vitest": "^0.33.0"
+    "vitepress": "1.0.0-beta.7",
+    "vitest": "^0.34.1"
   }
 }

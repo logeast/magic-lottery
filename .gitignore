@@ -23,7 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-coverage
-.eslintcache
-
-docs/.vitepress/cache/
+coverage/
+docs/.vitepress/cache
