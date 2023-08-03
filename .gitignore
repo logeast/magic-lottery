@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+.eslintcache
 coverage/
 docs/.vitepress/cache
